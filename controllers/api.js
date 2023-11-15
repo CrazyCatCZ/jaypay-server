@@ -27,3 +27,31 @@ export const sendConfirmationEmail = (req, res) => {
     }
   );
 };
+
+export const createNewContact = (req, res) => {
+  let createContact = new SibApiV3Sdk.CreateContact();
+
+  //const { name, email } = req;
+  const name = "Jacob";
+  const email = "plechac.k@gmail.com";
+
+  createContact = {
+    attributes: {
+      FIRSTNAME: name,
+    },
+    email: email,
+  };
+
+  contactsApiInstance.createContact(createContact).then(
+    (data) => {
+      console.log(
+        "API called successfully. Returned data: " + JSON.stringify(data)
+      );
+      sendConfirmationEmail(email);
+    },
+    (error) => {
+      console.error(error);
+      return res.status(500);
+    }
+  );
+};
