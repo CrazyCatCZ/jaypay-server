@@ -31,9 +31,7 @@ export const sendConfirmationEmail = (req, res) => {
 export const createNewContact = (req, res) => {
   let createContact = new SibApiV3Sdk.CreateContact();
 
-  //const { name, email } = req;
-  const name = "Jacob";
-  const email = "plechac.k@gmail.com";
+  const { name, email } = req;
 
   createContact = {
     attributes: {
