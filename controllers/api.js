@@ -28,6 +28,8 @@ export const sendConfirmationEmail = (req, res) => {
       return res.status(500);
     }
   );
+
+  return res.status(200);
 };
 
 export const createNewContact = (req, res) => {
