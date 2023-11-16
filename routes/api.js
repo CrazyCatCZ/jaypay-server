@@ -1,10 +1,9 @@
 import express from "express";
 
-import { sendConfirmationEmail, createNewContact } from "../controllers/api.js";
+import { sendTransactionalEmail } from "../controllers/api.js";
 
 const router = express.Router();
 
-router.post("/create-new-contact", createNewContact);
-router.post("/send-confirmation-email", sendConfirmationEmail);
+router.post("/send-transactional-email", sendTransactionalEmail);
 
 export default router;
