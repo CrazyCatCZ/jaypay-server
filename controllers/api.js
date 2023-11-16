@@ -21,9 +21,11 @@ export const sendConfirmationEmail = (req, res) => {
   transactionalApiInstance.sendTransacEmail(sendSmtpEmail).then(
     (data) => {
       console.log("API called successfully. Returned data: " + data);
+      return res.status(200);
     },
     (error) => {
       console.error(error);
+      return res.status(500);
     }
   );
 };
@@ -31,7 +33,9 @@ export const sendConfirmationEmail = (req, res) => {
 export const createNewContact = (req, res) => {
   let createContact = new SibApiV3Sdk.CreateContact();
 
-  const { name, email } = req;
+  const { name, email } = req.body;
+
+  console.log(name, email);
 
   createContact = {
     attributes: {
