@@ -1,5 +1,6 @@
-import SibApiV3Sdk from "sib-api-v3-sdk";
+import axios from "axios";
 import dotenv from "dotenv";
+import SibApiV3Sdk from "sib-api-v3-sdk";
 
 dotenv.config();
 
@@ -12,6 +13,22 @@ const CONFIRMATION_TEMPLATE_ID = 7;
 
 let contactsApiInstance = new SibApiV3Sdk.ContactsApi();
 const transactionalApiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+export const sendForm = async (name, email, message) => {
+  await axios
+    .post("https://api.web3forms.com/submit", {
+      name,
+      email,
+      message,
+      access_key: process.env.FORM_API_KEY,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export const sendEmail = async (email) => {
   let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();

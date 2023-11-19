@@ -1,9 +1,9 @@
 import express from "express";
 
-import { sendTransactionalEmail } from "../controllers/api.js";
+import { submitWebsiteForm } from "../controllers/api.js";
 
 const router = express.Router();
 
-router.post("/send-transactional-email", sendTransactionalEmail);
+router.post("/submit-website-form", submitWebsiteForm);
 
 export default router;

@@ -1,8 +1,9 @@
-import { sendEmail, createContact } from "../utils/email.js";
+import { sendForm, sendEmail, createContact } from "../utils/email.js";
 
-export const sendTransactionalEmail = async (req, res) => {
-  const { name, email } = req.body;
+export const submitWebsiteForm = async (req, res) => {
+  const { name, email, message } = req.body;
 
+  await sendForm(name, email, message);
   await createContact(name, email);
   await sendEmail(email);
 
