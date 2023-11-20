@@ -7,5 +7,5 @@ export const submitWebsiteForm = async (req, res) => {
   await createContact(name, email);
   await sendEmail(email);
 
-  res.status(200);
+  res.sendStatus(200);
 };
