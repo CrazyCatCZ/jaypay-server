@@ -18,8 +18,6 @@ const hubspotClient = new Client({
   numberOfApiCallRetries: 3,
 });
 
-export const testFunc = async (name, email) => {};
-
 export const sendForm = async (name, email, message) => {
   await axios
     .post("https://api.web3forms.com/submit", {
