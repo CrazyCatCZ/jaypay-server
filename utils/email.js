@@ -13,6 +13,7 @@ const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = process.env.API_KEY;
 
+let contactsApiInstance = new SibApiV3Sdk.ContactsApi();
 const transactionalApiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 const hubspotClient = new Client({
