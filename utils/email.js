@@ -52,7 +52,7 @@ export const sendFormEmail = async (email) => {
   );
 };
 
-export const createContact = async (name, email) => {
+export const createContactOnHubSpot = async (name, email) => {
   const contactObj = {
     properties: {
       firstname: name,
@@ -60,6 +60,28 @@ export const createContact = async (name, email) => {
     },
   };
   await hubspotClient.crm.contacts.basicApi.create(contactObj);
+};
+
+export const createContactOnBrevo = async (name, email) => {
+  let createContact = new SibApiV3Sdk.CreateContact();
+
+  createContact = {
+    attributes: {
+      FIRSTNAME: name,
+    },
+    email: email,
+  };
+
+  contactsApiInstance.createContact(createContact).then(
+    (data) => {
+      console.log(
+        "API called successfully. Returned data: " + JSON.stringify(data)
+      );
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
 };
 
 export const sendInvitationEmail = async (email) => {

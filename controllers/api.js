@@ -1,7 +1,8 @@
 import {
   sendForm,
   sendFormEmail,
-  createContact,
+  createContactOnHubSpot,
+  createContactOnBrevo,
   sendInvitationEmail,
 } from "../utils/email.js";
 
@@ -9,7 +10,8 @@ export const submitWebsiteForm = async (req, res) => {
   const { name, email, message } = req.body;
 
   await sendForm(name, email, message);
-  await createContact(name, email);
+  await createContactOnHubSpot(name, email);
+  await createContactOnBrevo(name, email);
   await sendFormEmail(email);
 
   res.sendStatus(200);
