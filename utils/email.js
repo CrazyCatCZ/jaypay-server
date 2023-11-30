@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import SibApiV3Sdk from "sib-api-v3-sdk";
 import { Client } from "@hubspot/api-client";
 
+const CONFIRMATION_EMAIL_TEMPLATE_ID = 7;
+const INVITATION_EMAIL_TEMPLATE_ID = 9;
+
 dotenv.config();
 
 const defaultClient = SibApiV3Sdk.ApiClient.instance;
@@ -10,7 +13,6 @@ const defaultClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = defaultClient.authentications["api-key"];
 apiKey.apiKey = process.env.API_KEY;
 
-const CONFIRMATION_TEMPLATE_ID = 7;
 const transactionalApiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 const hubspotClient = new Client({
@@ -34,10 +36,10 @@ export const sendForm = async (name, email, message) => {
     });
 };
 
-export const sendEmail = async (email) => {
+export const sendFormEmail = async (email) => {
   let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
 
-  sendSmtpEmail.templateId = CONFIRMATION_TEMPLATE_ID;
+  sendSmtpEmail.templateId = CONFIRMATION_EMAIL_TEMPLATE_ID;
   sendSmtpEmail.to = [{ email }];
 
   await transactionalApiInstance.sendTransacEmail(sendSmtpEmail).then(
@@ -58,4 +60,20 @@ export const createContact = async (name, email) => {
     },
   };
   await hubspotClient.crm.contacts.basicApi.create(contactObj);
+};
+
+export const sendInvitationEmail = async (email) => {
+  let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
+
+  sendSmtpEmail.templateId = INVITATION_EMAIL_TEMPLATE_ID;
+  sendSmtpEmail.to = [{ email }];
+
+  await transactionalApiInstance.sendTransacEmail(sendSmtpEmail).then(
+    (data) => {
+      console.log("API called successfully. Returned data: " + data);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
 };
