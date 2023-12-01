@@ -55,8 +55,8 @@ export const editContactOnHubSpot = async (data) => {
     company,
     email,
     website,
-    billingAddress,
     phone,
+    billingAddress,
   } = data;
 
   const publicObjectSearchRequest = {
