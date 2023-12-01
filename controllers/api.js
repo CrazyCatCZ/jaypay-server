@@ -1,8 +1,11 @@
 import {
-  sendForm,
-  sendFormEmail,
   createContactOnHubSpot,
   createContactOnBrevo,
+  editContactOnHubSpot,
+} from "../utils/contact.js";
+import {
+  sendForm,
+  sendFormEmail,
   sendInvitationEmail,
 } from "../utils/email.js";
 
@@ -18,9 +21,10 @@ export const submitWebsiteForm = async (req, res) => {
 };
 
 export const submitIntakeForm = async (req, res) => {
-  const { email } = req.body;
+  const data = req.body;
 
   await sendInvitationEmail(email);
+  await editContactOnHubSpot(data);
 
   res.sendStatus(200);
 };
