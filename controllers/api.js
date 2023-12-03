@@ -8,7 +8,7 @@ import {
   sendFormEmail,
   sendInvitationEmail,
 } from "../utils/email.js";
-import { verify } from "../utils/slackBot.js";
+import { createChannel } from "../utils/slackBot.js";
 
 export const submitWebsiteForm = async (req, res) => {
   const { name, email, message } = req.body;
@@ -32,7 +32,7 @@ export const submitIntakeForm = async (req, res) => {
 };
 
 export const userJoinWorkspace = async (req, res) => {
-  const { challenge } = req.body;
-  console.log("This is a test message");
-  res.send(challenge);
+  const { userId, userName } = req.body;
+
+  await createChannel(userId, userName);
 };

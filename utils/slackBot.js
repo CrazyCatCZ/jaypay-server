@@ -1,3 +1,3 @@
-export const verify = async (challenge) => {
-  res.send({ challenge });
+export const createChannel = async (userId, userName) => {
+  console.log(userId, userName);
 };
