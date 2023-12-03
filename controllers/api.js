@@ -8,6 +8,7 @@ import {
   sendFormEmail,
   sendInvitationEmail,
 } from "../utils/email.js";
+import { verify } from "../utils/slackBot.js";
 
 export const submitWebsiteForm = async (req, res) => {
   const { name, email, message } = req.body;
@@ -28,4 +29,8 @@ export const submitIntakeForm = async (req, res) => {
   await editContactOnHubSpot(data);
 
   res.sendStatus(200);
+};
+
+export const userJoinWorkspace = async (req, res) => {
+  await verify();
 };
