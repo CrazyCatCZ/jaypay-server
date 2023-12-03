@@ -33,5 +33,6 @@ export const submitIntakeForm = async (req, res) => {
 
 export const userJoinWorkspace = async (req, res) => {
   const { challenge } = req.body;
+  console.log("This is a test message");
   res.send(challenge);
 };
