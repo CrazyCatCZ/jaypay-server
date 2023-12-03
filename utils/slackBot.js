@@ -1,5 +1,3 @@
-export const verify = async (req, res) => {
-  const { challenge } = req.body;
-
+export const verify = async (challenge) => {
   res.send({ challenge });
 };
