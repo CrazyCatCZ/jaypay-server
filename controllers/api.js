@@ -35,23 +35,7 @@ export const userJoinWorkspace = async (req, res) => {
   const { event } = req.body;
 
   if (event.type === "team_join") {
-    const { user } = event;
-    const channelName = user.name;
-
-    const channel = await web.conversations.create({
-      name: channelName,
-      is_private: true,
-    });
-
-    await web.conversations.invite({
-      channel: channel.id,
-      users: user.id,
-    });
-
-    await web.chat.postMessage({
-      channel: channel.id,
-      text: `Welcome to the private channel, ${user.name}!`,
-    });
+    createPrivateChannel(event);
   }
 
   res.sendStatus(200);
