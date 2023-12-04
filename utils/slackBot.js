@@ -2,6 +2,11 @@ import { WebClient } from "@slack/web-api";
 
 const web = new WebClient(process.env.SLACK_API_KEY);
 
-export const createChannel = async (userId, userName) => {
-  console.log(userId, userName);
+export const createPrivateChannel = async (user) => {
+  // Create a private channel with the user's username
+  const channelName = user.name; // Assuming username is unique
+  const createChannelResponse = await web.conversations.create({
+    name: channelName,
+    is_private: true,
+  });
 };
