@@ -32,7 +32,10 @@ export const submitIntakeForm = async (req, res) => {
 };
 
 export const userJoinWorkspace = async (req, res) => {
-  const { userId, userName } = req.body;
+  const { event } = req.body;
+
+  console.log(event);
+  console.log(event.user.name);
 
   await createChannel(userId, userName);
 };
