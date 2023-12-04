@@ -13,7 +13,7 @@ const validChannelName = (name) => {
 export const createPrivateChannel = async (user) => {
   // Create a private channel with the user's username
   const channelName = validChannelName(user.name);
-  const createChannelResponse = await web.conversations.create({
+  const createChannelResponse = await web.admin.conversations.create({
     name: channelName,
     is_private: true,
   });
