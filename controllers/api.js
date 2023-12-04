@@ -32,11 +32,27 @@ export const submitIntakeForm = async (req, res) => {
 };
 
 export const userJoinWorkspace = async (req, res) => {
-  const {
-    event: { type, user },
-  } = req.body;
+  const { event } = req.body;
 
-  if (type === "team_join") {
-    await createPrivateChannel(user);
+  if (event.type === "team_join") {
+    const { user } = event;
+    const channelName = user.name;
+
+    const channel = await web.conversations.create({
+      name: channelName,
+      is_private: true,
+    });
+
+    await web.conversations.invite({
+      channel: channel.id,
+      users: user.id,
+    });
+
+    await web.chat.postMessage({
+      channel: channel.id,
+      text: `Welcome to the private channel, ${user.name}!`,
+    });
   }
+
+  res.sendStatus(200);
 };
