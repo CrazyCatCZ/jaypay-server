@@ -32,7 +32,11 @@ export const submitIntakeForm = async (req, res) => {
 };
 
 export const userJoinWorkspace = async (req, res) => {
-  const { challenge } = req.body;
+  const { event } = req.body;
 
-  res.challenge({ challenge });
+  if (event.type == "team_join") {
+    createInviteMessage(event);
+  }
+
+  res.sendStatus(200);
 };
