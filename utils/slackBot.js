@@ -10,8 +10,7 @@ const validChannelName = (name) => {
   return sanitized.substring(0, 21);
 };
 
-export const createPrivateChannel = async (event) => {
-  // Create a private channel with the user's username
+export const createInviteMessage = async (event) => {
   const { user } = event;
   const channelName = user.name;
 
@@ -27,6 +26,6 @@ export const createPrivateChannel = async (event) => {
 
   await web.chat.postMessage({
     channel: channel.id,
-    text: `Welcome to the private channel, ${user.name}!`,
+    text: `Welcome to the private channel, ${channelName}!`,
   });
 };

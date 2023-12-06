@@ -8,7 +8,7 @@ import {
   sendFormEmail,
   sendInvitationEmail,
 } from "../utils/email.js";
-import { createPrivateChannel } from "../utils/slackBot.js";
+import { createInviteMessage } from "../utils/slackBot.js";
 
 export const submitWebsiteForm = async (req, res) => {
   const { name, email, message } = req.body;
@@ -34,9 +34,6 @@ export const submitIntakeForm = async (req, res) => {
 export const userJoinWorkspace = async (req, res) => {
   const { event } = req.body;
 
-  if (event.type === "team_join") {
-    createPrivateChannel(event);
-  }
-
+  createInviteMessage(event);
   res.sendStatus(200);
 };
