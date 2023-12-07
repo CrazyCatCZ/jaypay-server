@@ -8,7 +8,7 @@ import {
   sendFormEmail,
   sendInvitationEmail,
 } from "../utils/email.js";
-import { createInviteMessage } from "../utils/slackBot.js";
+import { createInviteMessageUser } from "../utils/slackBot.js";
 
 export const submitWebsiteForm = async (req, res) => {
   const { name, email, message } = req.body;
@@ -35,7 +35,7 @@ export const userJoinWorkspace = async (req, res) => {
   const { event } = req.body;
 
   if (event.type == "team_join") {
-    createInviteMessage(event);
+    createInviteMessageUser(event);
   }
 
   res.sendStatus(200);
