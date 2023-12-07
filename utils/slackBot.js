@@ -12,20 +12,24 @@ const validChannelName = (name) => {
 
 export const createInviteMessageUser = async (event) => {
   const { user } = event;
-  const channelName = user.name;
+  const channelName = validChannelName(user.name);
 
-  const channel = await web.conversations.create({
-    name: channelName,
-    is_private: true,
-  });
+  try {
+    const channel = await web.conversations.create({
+      name: channelName,
+      is_private: true,
+    });
 
-  await web.conversations.invite({
-    channel: channel.id,
-    users: user.id,
-  });
+    await web.conversations.invite({
+      channel: channel.id,
+      users: user.id,
+    });
 
-  await web.chat.postMessage({
-    channel: channel.id,
-    text: `Welcome to the private channel, ${channelName}!`,
-  });
+    await web.chat.postMessage({
+      channel: channel.id,
+      text: `Welcome to the private channel, ${channelName}!`,
+    });
+  } catch {
+    console.log("Error");
+  }
 };
