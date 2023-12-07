@@ -34,9 +34,7 @@ export const submitIntakeForm = async (req, res) => {
 export const userJoinWorkspace = async (req, res) => {
   const { event } = req.body;
 
-  if (event.type == "team_join" || event.type == "channel_created") {
-    createInviteMessageUser(event);
-  }
+  createInviteMessageUser(event);
 
   res.sendStatus(200);
 };
