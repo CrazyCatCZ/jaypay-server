@@ -30,7 +30,8 @@ export const createInviteMessageUser = async (event) => {
       channel: channel.id,
       text: `Welcome to the private channel, ${channelName}!`,
     });
-  } catch {
+  } catch (error) {
     console.log("Error");
+    console.log(error.message);
   }
 };
