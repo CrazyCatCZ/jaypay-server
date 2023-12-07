@@ -10,7 +10,7 @@ const validChannelName = (name) => {
   return sanitized.substring(0, 21);
 };
 
-export const createInviteMessage = async (event) => {
+export const createInviteMessageUser = async (event) => {
   const { user } = event;
   const channelName = user.name;
 
