@@ -12,9 +12,10 @@ const validChannelName = (name) => {
 
 export const createInviteMessageUser = async (event) => {
   const { user } = event;
-  const channelName = validChannelName(user.name);
 
   try {
+    const channelName = validChannelName(user.name);
+
     const channel = await web.conversations.create({
       name: channelName,
       is_private: true,
