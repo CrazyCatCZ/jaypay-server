@@ -79,8 +79,6 @@ export const editContactOnHubSpot = async (data) => {
     publicObjectSearchRequest
   );
 
-  console.log(email);
-
   const contactID = response.results[0].id;
   const res = await hubspotClient.crm.contacts.basicApi.update(contactID, {
     properties: {

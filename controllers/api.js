@@ -8,6 +8,7 @@ import {
   sendFormEmail,
   sendInvitationEmail,
 } from "../utils/email.js";
+import { inviteToSlack } from "../utils/slack.js";
 
 export const submitWebsiteForm = async (req, res) => {
   const { name, email, message } = req.body;
@@ -24,8 +25,9 @@ export const submitIntakeForm = async (req, res) => {
   const data = req.body;
   const { email } = req.body;
 
-  await sendInvitationEmail(email);
+  //await sendInvitationEmail(email);
   await editContactOnHubSpot(data);
+  await inviteToSlack(data, email);
 
   res.sendStatus(200);
 };
