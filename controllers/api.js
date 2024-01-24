@@ -23,6 +23,7 @@ export const submitWebsiteForm = async (req, res) => {
 
 export const submitIntakeForm = async (req, res) => {
   const data = req.body;
+  const { email } = data;
 
   await sendInvitationEmail(email);
   await editContactOnHubSpot(data);
