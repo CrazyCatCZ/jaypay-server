@@ -3,8 +3,12 @@ import {
   createContactOnBrevo,
   editContactOnHubSpot,
 } from "../utils/contact.js";
-import { sendForm, sendFormEmail } from "../utils/email.js";
-import { inviteToSlack } from "../utils/slack.js";
+import {
+  sendForm,
+  sendFormEmail,
+  sendInvitationEmail,
+} from "../utils/email.js";
+//import { inviteToSlack } from "../utils/slack.js";
 
 export const submitWebsiteForm = async (req, res) => {
   const { name, email, message } = req.body;
